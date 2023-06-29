@@ -44,7 +44,8 @@ class puppet_agent::params {
   # and greping for "puppet enterprise". With Puppet 4 and PE 2015.2, there
   # is no longer a "PE Puppet", and so that fact will no longer work.
   # Instead check for the `is_pe` fact or if a PE provided function is available
-  if $facts['is_pe'] {
+  $_is_pe = getvar('::is_pe')
+  if $_is_pe {
     # Calculate the default collection
     $_pe_version = pe_build_version()
     # Not PE or pe_version < 2018.1.3, use PC1
